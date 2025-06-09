@@ -1,3 +1,4 @@
+using HybridCLR;
 using HybridCLR.Editor;
 using Obfuz4HybridCLR;
 using System.Collections;
@@ -17,23 +18,29 @@ public static class BuildCommand
         CompileDllCommand.CompileDll(target);
 
         string obfuscatedHotUpdateDllPath = PrebuildCommandExt.GetObfuscatedHotUpdateAssemblyOutputPath(target);
+        UnityEngine.Debug.Log("obfuscatedHotUpdateDllPath: " + obfuscatedHotUpdateDllPath);
+
         ObfuscateUtil.ObfuscateHotUpdateAssemblies(target, obfuscatedHotUpdateDllPath);
 
         Directory.CreateDirectory(Application.streamingAssetsPath);
 
         string hotUpdateDllPath = $"{SettingsUtil.GetHotUpdateDllsOutputDirByTarget(target)}";
         List<string> obfuscationRelativeAssemblyNames = ObfuzSettings.Instance.assemblySettings.GetObfuscationRelativeAssemblyNames();
-
         foreach (string assName in SettingsUtil.HotUpdateAssemblyNamesIncludePreserved)
         {
-            string srcDir = obfuscationRelativeAssemblyNames.Contains(assName) ? obfuscatedHotUpdateDllPath : hotUpdateDllPath;
-            string srcFile = $"{srcDir}/{assName}.dll";
-            string dstFile = $"{Application.streamingAssetsPath}/{assName}.dll.bytes";
-            if (File.Exists(srcFile))
-            {
-                File.Copy(srcFile, dstFile, true);
-                Debug.Log($"[CompileAndObfuscate] Copy {srcFile} to {dstFile}");
-            }
+            UnityEngine.Debug.Log("assName: " + assName);
         }
+
+        // foreach (string assName in SettingsUtil.HotUpdateAssemblyNamesIncludePreserved)
+        // {
+        //     string srcDir = obfuscationRelativeAssemblyNames.Contains(assName) ? obfuscatedHotUpdateDllPath : hotUpdateDllPath;
+        //     string srcFile = $"{srcDir}/{assName}.dll";
+        //     string dstFile = $"{Application.streamingAssetsPath}/{assName}.dll.bytes";
+        //     if (File.Exists(srcFile))
+        //     {
+        //         File.Copy(srcFile, dstFile, true);
+        //         Debug.Log($"[CompileAndObfuscate] Copy {srcFile} to {dstFile}");
+        //     }
+        // }
     }
 }
