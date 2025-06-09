@@ -6,7 +6,7 @@ public class All : MonoBehaviour
 {
     public int x;
 
-    public void Run(A a, B b, C c, D d)
+    public void Run(BPInfo_NonObfus1 a, BPInfo_NonObfus2 b, BPInfo_Obfus1 c, BPInfo_Obfus2 d)
     {
         x += a.x + 1;
         x += b.x + 2;
