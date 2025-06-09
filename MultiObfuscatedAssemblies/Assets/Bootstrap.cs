@@ -7,8 +7,8 @@ using UnityEngine;
 
 public class Bootstrap : MonoBehaviour
 {
-    // ³õÊ¼»¯EncryptionServiceºó±»»ìÏýµÄ´úÂë²ÅÄÜÕý³£ÔËÐÐ£¬
-    // Òò´Ë¾¡¿ÉÄÜµØÔçµØ³õÊ¼»¯Ëü¡£
+    // ï¿½ï¿½Ê¼ï¿½ï¿½EncryptionServiceï¿½ó±»»ï¿½ï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð£ï¿½
+    // ï¿½ï¿½Ë¾ï¿½ï¿½ï¿½ï¿½Üµï¿½ï¿½ï¿½Ø³ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
     private static void SetUpStaticSecretKey()
     {
